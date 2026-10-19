@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anupa Gaire — PhD Student, Biological Sciences, University of Idaho</title>
+<style>
+  /* ============================================================
+     EDIT ME: change the whole look by editing these variables.
+     Colors, fonts, and the photo size live here.
+  ============================================================ */
+  :root {
+    --accent:      #2f6f4f;   /* main accent (buttons, links, headings)  */
+    --accent-dark: #234f3a;   /* darker accent (hover)                  */
+    --accent-soft: #e7f0ea;   /* tint used for figure placeholders       */
+    --ink:         #1f2a24;   /* body text                              */
+    --muted:       #5c6b63;   /* secondary text / meta                  */
+    --line:        #d8e0da;   /* borders / dividers                     */
+    --bg:          #ffffff;   /* page background                        */
+    --card:        #f4f7f5;   /* section background (subtle)            */
+    --radius:      10px;
+    --max-width:   820px;
+    --photo-size:  150px;     /* width & height of the round photo      */
+    --font-serif:  Georgia, "Times New Roman", serif;
+    --font-sans:   -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1.06rem;
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 20px 64px; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+  /* =====================  (a) HOME / hero  ===================== */
+  .hero {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 18px; text-align: center;
+    padding: 48px 16px 32px; margin: -20px -20px 0;
+    background:
+      linear-gradient(rgba(255,255,255,.82), rgba(255,255,255,.86)),
+      url("background.jpg") center / cover no-repeat;
+  }
+  .photo {
+    width: var(--photo-size); height: var(--photo-size);
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    box-shadow: 0 6px 18px rgba(35, 79, 58, .18);
+    object-fit: cover;
+  }
+  .name { font-family: var(--font-serif); font-size: 2.3rem; line-height: 1.12; margin: 0; letter-spacing: .5px; }
+  .affiliation { margin: 0; color: var(--muted); font-size: 1.05rem; }
+
+  .catchy {
+    font-family: var(--font-serif);
+    font-size: 1.28rem; color: var(--accent-dark);
+    margin: 6px 0 0; max-width: 620px;
+  }
+
+  /* plain-language research summary (Home) */
+  .plain {
+    max-width: 680px; margin: 14px auto 0; text-align: center;
+    font-size: 1.08rem; color: var(--ink);
+  }
+
+  .contact {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 8px 10px; margin-top: 18px;
+  }
+  .contact a {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 20px; padding: 6px 14px; font-size: .92rem; color: var(--ink);
+  }
+  .contact a:hover { color: var(--accent-dark); border-color: var(--accent); text-decoration: none; }
+
+  /* =====================  site nav  ===================== */
+  nav.sitenav {
+    display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center;
+    padding: 14px 0 0; margin-top: 10px;
+    border-top: 1px solid var(--line); font-size: .95rem;
+  }
+  nav.sitenav a { color: var(--muted); }
+  nav.sitenav a:hover { color: var(--accent-dark); }
+
+  /* =====================  sections  ===================== */
+  section { padding-top: 40px; }
+
+  /* (b) Research section backdrop — web.jpg behind the project cards */
+  #research {
+    margin: 0 -20px; padding: 40px 20px 8px;
+    background:
+      linear-gradient(rgba(244,247,245,.72), rgba(244,247,245,.78)),
+      url("web.jpg") center / cover no-repeat;
+  }
+  #research .project { background: #fff; }
+  h2 {
+    font-family: var(--font-serif); font-size: 1.5rem; color: var(--accent-dark);
+    margin: 0 0 6px;
+  }
+  .section-lede { color: var(--muted); margin: 0 0 20px; }
+
+  /* =====================  (b) RESEARCH projects  ===================== */
+  .project {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--card); padding: 20px; margin-bottom: 22px;
+  }
+  .project h3 {
+    font-family: var(--font-serif); font-size: 1.2rem; margin: 0 0 4px; color: var(--ink);
+  }
+  .project .proj-meta { color: var(--accent-dark); font-size: .92rem; margin: 0 0 12px; }
+  .project .abstract { margin: 0 0 16px; }
+  .project .tag {
+    display: inline-block; background: var(--accent-soft); color: var(--accent-dark);
+    border-radius: 6px; font-size: .8rem; padding: 2px 9px; margin-bottom: 8px; letter-spacing: .03em;
+  }
+
+  .figures { display: flex; flex-wrap: wrap; gap: 14px; margin: 14px 0; }
+  .figure {
+    flex: 1 1 260px; min-width: 240px;
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: #fff; overflow: hidden;
+  }
+  .figure svg { display: block; width: 100%; height: auto; background: var(--accent-soft); }
+  .figure img { display: block; width: 100%; height: auto; }
+  .figure figcaption {
+    font-size: .82rem; color: var(--muted); padding: 8px 12px; border-top: 1px solid var(--line);
+  }
+  /* To swap a diagram for a real photo: replace the <svg>…</svg> with
+       <img src="fig1.png" alt="..."> and delete the .figure svg rule's background. */
+
+  .paper-link {
+    display: inline-block; margin-top: 6px; font-weight: 700; font-size: .95rem;
+    background: var(--accent); color: #fff !important; padding: 7px 14px; border-radius: 7px;
+  }
+  .paper-link:hover { background: var(--accent-dark); text-decoration: none; }
+  .soon { color: var(--muted); font-size: .92rem; font-style: italic; }
+
+  /* =====================  (c) PUBLICATIONS  ===================== */
+  .pubs { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
+  .pubs li { padding-left: 16px; border-left: 3px solid var(--line); }
+  .pubs .title { font-style: italic; }
+  .pubs .venue { color: var(--muted); }
+  .pubs .doi   { font-size: .9rem; word-break: break-all; }
+  .pubs .note  { color: var(--muted); font-size: .9rem; }
+  .pub-sub { font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 22px 0 8px; }
+  .scholar { margin: 22px 0 0; font-size: .98rem; }
+
+  /* =====================  expandable (details/summary)  ===================== */
+  details.collapsible { border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
+  details.collapsible summary {
+    list-style: none; cursor: pointer; padding: 14px 18px;
+    display: flex; flex-direction: column; gap: 2px;
+    position: relative; user-select: none;
+  }
+  details.collapsible summary::-webkit-details-marker { display: none; }
+  details.collapsible summary h2 { border: none; margin: 0; font-size: 1.35rem; padding-bottom: 0; }
+  details.collapsible .toggle { color: var(--muted); font-size: .85rem; }
+  details.collapsible summary::after {
+    content: "▸"; position: absolute; right: 18px; top: 16px;
+    color: var(--accent); font-size: 1.1rem; transition: transform .2s ease;
+  }
+  details.collapsible[open] summary::after { transform: rotate(90deg); }
+  details.collapsible[open] .toggle { color: var(--muted); }
+  details.collapsible ul.dated { padding: 0 18px 18px; }
+  details.collapsible ul.dated li { background: #fff; }
+
+  /* =====================  generic dated entries  ===================== */
+  .dated { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .dated li { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 13px 16px; }
+  .dated .title { font-weight: 700; }
+  .dated .inst  { color: var(--muted); }
+  .dated .dates { float: right; color: var(--muted); font-size: .92rem; white-space: nowrap; }
+  .dated .detail { font-size: .96rem; margin-top: 6px; }
+
+  /* =====================  skills chips  ===================== */
+  .chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips li { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 6px 13px; font-size: .93rem; }
+
+  /* =====================  footer  ===================== */
+  footer {
+    margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: .9rem; text-align: center;
+  }
+  footer .disclosure { font-size: .82rem; line-height: 1.55; margin: 10px auto; max-width: 640px; color: var(--muted); }
+
+  /* =====================  phone  ===================== */
+  @media (max-width: 480px) {
+    .name { font-size: 1.9rem; }
+    .catchy { font-size: 1.12rem; }
+    body { font-size: 1rem; }
+    .dated .dates { float: none; display: block; margin-top: 2px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- =================  (a) HOME  ================= -->
+  <header class="hero">
+    <!-- EDIT: your photo (photo.jpg) — swap the src to change it -->
+    <img class="photo" src="photo.jpg" alt="Anupa Gaire">
+
+    <h1 class="name">Anupa Gaire</h1>
+    <p class="affiliation">PhD Student · Department of Biological Sciences · University of Idaho</p>
+
+    <p class="catchy">“I engineer soil bacteria to turn mustard seed into a natural,
+       chemical-free fumigant that protects crops from nematode pests.”</p>
+
+    <p class="plain">
+      In plain terms: crops like tomatoes and potatoes are damaged by tiny worms called
+      nematodes. Instead of relying on synthetic soil fumigants, I’m working to make
+      <em>Brassica</em> (mustard-family) plant products — a safer, soil-friendly fumigant —
+      even more powerful, by pairing them with engineered bacteria. Before this, I spent
+      several years helping Oregon vineyards fight a stubborn wood-rotting fungal disease
+      that attacks pruning wounds.
+    </p>
+
+    <!-- EDIT: contact info -->
+    <div class="contact">
+      <a href="mailto:gair1381@vandals.uidaho.edu">gair1381@vandals.uidaho.edu</a>
+      <a href="tel:+14582625149">(458) 262-5149</a>
+      <a href="https://orcid.org/0009-0006-9024-0359" target="_blank" rel="noopener">ORCID</a>
+      <a href="https://scholar.google.com/citations?user=TNGv--sAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+
+  <!-- =================  SITE NAV  ================= -->
+  <nav class="sitenav">
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#education">Education</a>
+    <a href="#presentations">Presentations</a>
+    <a href="#awards">Awards</a>
+    <a href="#service">Service</a>
+    <a href="#skills">Skills</a>
+  </nav>
+
+  <!-- =================  (b) RESEARCH  ================= -->
+  <section id="research">
+    <h2>Research</h2>
+    <p class="section-lede">
+      My research centers on sustainable and environmentally friendly approaches to plant disease
+      control. Rather than depending on synthetic chemical fumigants and fungicides, which can harm
+      soil health and beneficial organisms over time, I look for natural or biological alternatives
+      that protect crops while preserving the ecosystems they grow in. In the projects below, I draw
+      on my training in plant pathology, molecular biology, and crop science to tackle three
+      interconnected problems: how to make biological soil fumigants more effective, how to shield
+      grapevines from the trunk diseases that shorten their productive lives, and how plants
+      negotiate their partnerships with soil fungi. Each project is presented with a short summary,
+      a supporting figure, and a link to the full paper wherever one has been published.
+    </p>
+
+    <!-- ---------- Project 1: dissertation ---------- -->
+    <article class="project">
+      <span class="tag">Dissertation · in progress</span>
+      <h3>Bio-fumigation 2.0: Engineering Bacteria to Supercharge <em>Brassica</em> Fumigants</h3>
+      <p class="proj-meta">PhD, University of Idaho — Dr. Eric Holmes &amp; Dr. Klas Udekwu</p>
+      <p class="abstract">
+        <em>Brassica juncea</em> seed meal releases natural fumigant compounds (isothiocyanates)
+        only when an enzyme called myrosinase is present. Because myrosinase and its substrates
+        are normally kept apart in the plant, their fumigant yield in soil is limited. I am
+        engineering <em>Pseudomonas putida</em> to express and secrete myrosinase directly into
+        the soil, so the enzyme can act on mustard seed-meal extract where it’s applied. My
+        aim is to boost the isothiocyanate concentration enough to control nematodes, offering a
+        renewable alternative to synthetic soil fumigants.
+      </p>
+      <div class="figures">
+        <!-- EDIT: replace the SVG below with a real figure, e.g. <img src="fig-biofum.png" alt="..."> -->
+        <figure class="figure">
+          <svg viewBox="0 0 440 262" role="img" aria-label="Schematic: adding engineered Pseudomonas putida to Brassica seed meal extract enhances myrosinase production, increasing glucosinolate metabolism into isothiocyanate that kills nematodes">
+            <defs>
+              <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f4faf6"/>
+                <stop offset="1" stop-color="#e2efe6"/>
+              </linearGradient>
+              <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset="1" stop-color="#eef6f0"/>
+              </linearGradient>
+              <linearGradient id="smeGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#fdf6e3"/>
+                <stop offset="1" stop-color="#f3e4bd"/>
+              </linearGradient>
+              <radialGradient id="bacGrad" cx="0.4" cy="0.35" r="0.85">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset="1" stop-color="#d4e9dd"/>
+              </radialGradient>
+              <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="2.5" stdDeviation="3.5" flood-color="#234f3a" flood-opacity="0.18"/>
+              </filter>
+              <marker id="arw" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L7,3 L0,6 Z" fill="#2f6f4f"/>
+              </marker>
+            </defs>
+
+            <rect x="0" y="0" width="440" height="262" fill="url(#bgGrad)"/>
+            <text x="220" y="28" font-size="15" text-anchor="middle" fill="#234f3a" font-family="Georgia, serif" font-weight="bold">Bio-fumigation pathway</text>
+            <text x="220" y="44" font-size="10" text-anchor="middle" fill="#5c6b63" font-family="Georgia, serif" font-style="italic">engineered P. putida added to Brassica SME → enhances myrosinase → more ITC</text>
+
+            <!-- Input 1: Brassica SME (vessel) -->
+            <g filter="url(#soft)">
+              <rect x="22" y="64" width="120" height="78" rx="13" fill="url(#smeGrad)" stroke="#b98f3c" stroke-width="2"/>
+            </g>
+            <text x="82" y="82" font-size="11.5" text-anchor="middle" fill="#7a5a1e" font-weight="bold">Brassica SME</text>
+            <text x="82" y="94" font-size="8.5" text-anchor="middle" fill="#8a6a2c">seed meal extract</text>
+            <circle cx="52" cy="108" r="4.5" fill="#c9a24b"/>
+            <circle cx="68" cy="120" r="4.5" fill="#d8b45a"/>
+            <circle cx="92" cy="112" r="4.5" fill="#b98f3c"/>
+            <circle cx="108" cy="124" r="4.5" fill="#d8b45a"/>
+            <circle cx="78" cy="128" r="4.5" fill="#c9a24b"/>
+            <text x="82" y="140" font-size="8.5" text-anchor="middle" fill="#7a5a1e">has GSL (substrate)</text>
+
+            <!-- Input 2: engineered P. putida -->
+            <g filter="url(#soft)">
+              <rect x="22" y="164" width="120" height="58" rx="13" fill="url(#boxGrad)" stroke="#2f6f4f" stroke-width="1.8"/>
+            </g>
+            <ellipse cx="50" cy="193" rx="15" ry="10" fill="url(#bacGrad)" stroke="#2f6f4f" stroke-width="1.6"/>
+            <circle cx="50" cy="193" r="1.8" fill="#c0553b"/>
+            <text x="98" y="189" font-size="10.5" text-anchor="middle" fill="#1f2a24" font-weight="bold">engineered</text>
+            <text x="98" y="202" font-size="10.5" text-anchor="middle" fill="#1f2a24" font-weight="bold">P. putida</text>
+            <text x="82" y="216" font-size="8.5" text-anchor="middle" fill="#c0553b">adds myrosinase enzyme</text>
+
+            <!-- arrows: engineered bacteria goes INTO the SME (not straight to reaction) -->
+            <line x1="22" y1="164" x2="22" y2="152" stroke="#2f6f4f" stroke-width="2.2" marker-end="url(#arw)"/>
+            <text x="14" y="160" font-size="8" fill="#5c6b63" transform="rotate(-90 14 160)">added in</text>
+            <!-- SME (now with bacteria) feeds the reaction -->
+            <line x1="144" y1="107" x2="206" y2="132" stroke="#2f6f4f" stroke-width="2.2" marker-end="url(#arw)"/>
+            <text x="150" y="98" font-size="8" fill="#5c6b63">SME + bacteria in</text>
+
+            <!-- central reaction box -->
+            <g filter="url(#soft)">
+              <rect x="210" y="86" width="140" height="104" rx="14" fill="url(#boxGrad)" stroke="#234f3a" stroke-width="2"/>
+            </g>
+            <text x="280" y="104" font-size="10" text-anchor="middle" fill="#234f3a" font-weight="bold">enhances myrosinase</text>
+            <text x="280" y="116" font-size="9" text-anchor="middle" fill="#5c6b63">→ increases GSL metabolism</text>
+            <!-- GSL -->
+            <circle cx="244" cy="140" r="8.5" fill="#c9a24b"/>
+            <text x="244" y="164" font-size="9.5" text-anchor="middle" fill="#1f2a24" font-weight="bold">GSL</text>
+            <!-- reaction arrow (thick = boosted) -->
+            <line x1="256" y1="140" x2="312" y2="140" stroke="#2f6f4f" stroke-width="3.2" marker-end="url(#arw)"/>
+            <text x="284" y="130" font-size="8" text-anchor="middle" fill="#c0553b" font-style="italic">myrosinase</text>
+            <circle cx="276" cy="150" r="2.8" fill="#e08a3c"/>
+            <circle cx="286" cy="150" r="2.8" fill="#e08a3c"/>
+            <circle cx="296" cy="150" r="2.8" fill="#e08a3c"/>
+            <!-- ITC (strong) -->
+            <polygon points="332,124 344,130 344,144 332,150 320,144 320,130" fill="none" stroke="#234f3a" stroke-width="1.8"/>
+            <circle cx="332" cy="137" r="2.5" fill="#234f3a"/>
+            <text x="332" y="164" font-size="9.5" text-anchor="middle" fill="#1f2a24" font-weight="bold">ITC</text>
+            <text x="280" y="182" font-size="8" text-anchor="middle" fill="#234f3a" font-weight="bold">↑ higher ITC yield</text>
+
+            <!-- comparison: with vs without bacteria -->
+            <rect x="356" y="92" width="78" height="30" rx="8" fill="#e7f0ea" stroke="#b9c9bd" stroke-width="1.2"/>
+            <text x="395" y="104" font-size="7.5" text-anchor="middle" fill="#5c6b63">no bacteria:</text>
+            <text x="395" y="115" font-size="7.5" text-anchor="middle" fill="#8a9a8f">little ITC (weak)</text>
+            <rect x="356" y="150" width="78" height="30" rx="8" fill="#2f6f4f"/>
+            <text x="395" y="162" font-size="7.5" text-anchor="middle" fill="#ffffff">engineered:</text>
+            <text x="395" y="173" font-size="7.5" text-anchor="middle" fill="#ffffff">more ITC (strong)</text>
+
+            <!-- arrow down from ITC to nematode result -->
+            <line x1="332" y1="190" x2="332" y2="220" stroke="#2f6f4f" stroke-width="2.4" marker-end="url(#arw)"/>
+            <text x="345" y="208" font-size="8.5" fill="#5c6b63">toxic to</text>
+
+            <!-- result: kills nematodes in soil -->
+            <g filter="url(#soft)">
+              <rect x="272" y="224" width="120" height="28" rx="14" fill="#2f6f4f"/>
+            </g>
+            <text x="332" y="238" font-size="10" text-anchor="middle" fill="#ffffff" font-weight="bold">kills nematodes</text>
+            <text x="332" y="249" font-size="10" text-anchor="middle" fill="#ffffff" font-weight="bold">in soil</text>
+          </svg>
+          <figcaption>Fig. 1 — Adding engineered <em>P. putida</em> to <em>Brassica</em> seed meal
+          extract (SME) enhances myrosinase production, which increases metabolism of
+          glucosinolate (GSL) into isothiocyanate (ITC). The higher ITC yield is what fumigates
+          the soil and kills nematodes.</figcaption>
+        </figure>
+      </div>
+      <span class="soon">Full paper: dissertation in progress — no publication yet.</span>
+    </article>
+
+    <!-- ---------- Project 2: AMF symbiosis (now #2) ---------- -->
+    <article class="project">
+      <span class="tag">Research · ongoing</span>
+      <h3>Inside the Partnership: Arbuscular Mycorrhizal Fungi &amp; Legumes</h3>
+      <p class="proj-meta">Faculty Research Assistant, Oregon State University — Dr. Sergey Ivanov</p>
+      <p class="abstract">
+        Arbuscular mycorrhizal fungi (AMF) form a mutualistic partnership with most crop roots,
+        helping plants absorb phosphorus in exchange for sugars. Using <em>Medicago
+        truncatula</em>, I studied the molecular and cellular machinery that governs this
+        symbiosis. I performed <em>Agrobacterium</em>-mediated hairy-root and stable
+        transformation, generated transgenic lines by Gateway cloning and CRISPR-Cas9 multiplex
+        gene editing, made point mutants by overlapping PCR, and characterized AMF root-length
+        colonization and transgenic genotypes to reveal how the plant regulates fungal entry.
+      </p>
+      <div class="figures">
+        <figure class="figure">
+          <!-- Your AMF figure (AMF.jpg). Swap the src to update it. -->
+          <img src="AMF.jpg" alt="Arbuscular mycorrhizal fungi colonizing a Medicago root, forming arbuscules for nutrient exchange">
+          <figcaption>Fig. 2 — Arbuscular mycorrhizal fungi colonize the <em>Medicago</em> root and
+          form arbuscules, the organelle where the fungus trades phosphorus for plant sugars.</figcaption>
+        </figure>
+      </div>
+      <span class="soon">Full paper: no standalone publication yet.</span>
+    </article>
+
+    <!-- ---------- Project 3: GTD / pruning wounds (now #3) ---------- -->
+    <article class="project">
+      <span class="tag">MS thesis · published</span>
+      <h3>Protecting Grapevine Pruning Wounds from Trunk Disease</h3>
+      <p class="proj-meta">MS, Plant Pathology, Oregon State University (SOREC) — Dr. Achala N. KC</p>
+      <p class="abstract">
+        Grapevine trunk disease (GTD) enters through pruning wounds and can weaken or kill vines.
+        I led field trials in two Oregon vineyards to test how well pruning-wound protectants and
+        copper-based fungicides prevent <em>Botryosphaeria</em> dieback, and how long that
+        protection lasts. Across both conventional and organic systems I compared single versus
+        repeated fungicide applications and assessed residual protection over the dormant season.
+        The results inform timing and frequency recommendations that growers can use to cut back
+        trunk-disease losses.
+      </p>
+      <div class="figures">
+        <figure class="figure">
+          <!-- Your GTD poster (Poster.pdf → poster.png). Swap the src to update it. -->
+          <img src="poster.png" alt="Grapevine trunk disease poster: pruning-wound protection against Botryosphaeria dieback">
+          <figcaption>Fig. 3 — Poster from my MS thesis work on grapevine trunk disease
+          (pruning-wound protection against <em>Botryosphaeria</em> dieback).</figcaption>
+        </figure>
+      </div>
+      <a class="paper-link" href="https://doi.org/10.1094/PHP-12-24-0165-PDMR" target="_blank" rel="noopener">Read the full paper →</a>
+    </article>
+  </section>
+
+  <!-- =================  (c) PUBLICATIONS  ================= -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <!-- Peer-reviewed (most recent first) -->
+    <p class="pub-sub">Peer-reviewed</p>
+    <ul class="pubs">
+      <li>
+        Gaire, A., &amp; KC, A. N. (2025).
+        <span class="title">Evaluation of copper-based fungicide for Botryosphaeria dieback
+        management of grapevines in Southern Oregon, 2024.</span>
+        <span class="venue">Plant Health Progress.</span><br>
+        <a class="doi" href="https://doi.org/10.1094/PHP-12-24-0165-PDMR" target="_blank" rel="noopener">
+        doi:10.1094/PHP-12-24-0165-PDMR</a>
+      </li>
+      <li>
+        Gaire, A., Skinkis, P. A., &amp; KC, A. N. (2024).
+        <span class="title">Pruning Wound Protection: First Line of Defense for Grapevine Trunk
+        Disease Pathogens.</span>
+        <span class="venue">OWRI Vine to Wine Newsletter, October 2024.</span>
+        <span class="note">(non-refereed)</span>
+      </li>
+      <li>
+        Khadka, R. B., Bhandari, R., Rimal, A., Gaire, A., Adhikari, S., Bhandari, S., et al. (2023).
+        <span class="title">First report of target spot on tomato caused by
+        <em>Corynespora cassiicola</em> in Nepal.</span>
+        <span class="venue">New Disease Reports, 48(1).</span><br>
+        <a class="doi" href="https://doi.org/10.1002/ndr2.12187" target="_blank" rel="noopener">
+        doi:10.1002/ndr2.12187</a>
+      </li>
+    </ul>
+
+    <!-- In preparation -->
+    <p class="pub-sub">In preparation</p>
+    <ul class="pubs">
+      <li>
+        Gaire, A., Hernandez, M., Skinkis, P. A., &amp; KC, A. N. (202X).
+        <span class="title">Pruning wound protectants and their residual effect against
+        Botryosphaeria dieback in Oregon vineyards.</span>
+        <span class="note">(under revision)</span>
+      </li>
+    </ul>
+
+    <p class="scholar">
+      See the full list on my
+      <a href="https://scholar.google.com/citations?user=TNGv--sAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar profile →</a>
+    </p>
+  </section>
+
+  <!-- =================  EDUCATION  ================= -->
+  <section id="education">
+    <h2>Education</h2>
+    <ul class="dated">
+      <li>
+        <span class="dates">Aug 2026 – present</span>
+        <div class="title">PhD, Microbiology, Molecular Biology &amp; Biochemistry</div>
+        <div class="inst">Department of Biological Sciences, University of Idaho</div>
+        <div class="detail">Thesis: Optimization of bio-fumigation potential of <em>Brassica juncea</em> seed-meal extract using engineered bacteria.</div>
+      </li>
+      <li>
+        <span class="dates">2023 – 2025</span>
+        <div class="title">MS, Plant Pathology</div>
+        <div class="inst">Dept. of Botany &amp; Plant Pathology, Oregon State University</div>
+        <div class="detail">Thesis: Grapevine trunk disease (GTD) management for conventional and organic production.</div>
+      </li>
+      <li>
+        <span class="dates">2017 – 2021</span>
+        <div class="title">BS, Agriculture</div>
+        <div class="inst">Tribhuvan University, Institute of Agriculture and Animal Science, Nepal</div>
+        <div class="detail">Thesis: Effect of organic and inorganic fertilizers on growth and yield of tomato.</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- =================  PRESENTATIONS  ================= -->
+  <section id="presentations">
+    <h2>Presentations &amp; Outreach</h2>
+    <p class="pub-sub">Oral</p>
+    <ul class="pubs">
+      <li>Gaire, A., Skinkis, P. A., &amp; KC, A. N. (2025). <span class="title">Longevity of fungicide application in protecting pruning wounds from Botryosphaeria pathogens.</span> <span class="venue">10th Annual Southern Oregon Grape Day, Central Point, OR.</span></li>
+      <li>Gaire, A., Hernandez, M., DeShields, J., Skinkis, P. A., &amp; KC, A. N. (2024). <span class="title">Efficacy of pruning wound protectants and fungicides in preventing Botryosphaeria dieback in Oregon vineyards.</span> <span class="venue">APS Pacific Division Meeting &amp; 69th Conf. on Soilborne Plant Pathogens, Corvallis, OR.</span></li>
+      <li>Gaire, A., Hernandez, M., DeShields, J., Skinkis, P. A., &amp; KC, A. N. (2024). <span class="title">Evaluation of fungicides to control Botryosphaeria dieback in Oregon vineyards.</span> <span class="venue">9th Annual Southern Oregon Grape Day, Central Point, OR.</span></li>
+      <li>Gaire, A., Hernandez, M., DeShields, J., Skinkis, P. A., &amp; KC, A. N. (2024). <span class="title">Grapevine trunk disease management for conventional and organic production.</span> <span class="venue">Thesis Proposal Defense, BPP Graduate Student Symposium, Corvallis, OR.</span></li>
+      <li>Gaire, A., Skinkis, P. A., &amp; KC, A. N. (2024). <span class="title">Longevity of fungicide application in protecting pruning wounds from Botryosphaeria pathogens.</span> <span class="venue">SOREC Grape Field Day, Central Point, OR.</span></li>
+    </ul>
+    <p class="pub-sub">Poster</p>
+    <ul class="pubs">
+      <li>Gaire, A., Skinkis, P. A., &amp; KC, A. N. (2025). <span class="title">Repeated fungicide application improves wound protection in early-pruned grapevine from Botryosphaeria dieback.</span> <span class="venue">APS Annual Meeting, Honolulu, HI.</span></li>
+      <li>Gaire, A., Skinkis, P. A., &amp; KC, A. N. (2025). <span class="title">Is repeated fungicide application needed to reduce Botryosphaeriaceae infection in Oregon vineyards?</span> <span class="venue">OWRI Grape Day, Corvallis, OR.</span></li>
+      <li>Gaire, A., Hernandez, M., DeShields, J., Skinkis, P. A., &amp; KC, A. N. (2024). <span class="title">Exploring sustainable practices to protect grapevine pruning wounds from Botryosphaeria dieback.</span> <span class="venue">2024 LIVE Annual Meeting (Newberg, OR) &amp; OWRI Grape Day (Corvallis, OR).</span></li>
+    </ul>
+  </section>
+
+  <!-- =================  AWARDS  ================= -->
+  <section id="awards">
+    <details class="collapsible">
+      <summary>
+        <h2>Honors &amp; Awards</h2>
+        <span class="toggle">8 awards · click to expand</span>
+      </summary>
+      <ul class="dated">
+        <li><span class="dates">2025</span><div class="detail"><strong>Registry of Distinguished Student</strong>, College of Agricultural Sciences, Oregon State University (May 2025).</div></li>
+        <li><span class="dates">2025</span><div class="detail"><strong>APS Foundation Student Travel Award</strong>, American Phytopathological Society — APS Annual Meeting 2025 (May 2025).</div></li>
+        <li><span class="dates">2025</span><div class="detail"><strong>Anita Summers Travel Award</strong>, Dept. of Botany &amp; Plant Pathology, Oregon State University — APS Annual Meeting 2025 (Apr 2025).</div></li>
+        <li><span class="dates">2024</span><div class="detail"><strong>Traditional Scholarship</strong> for outstanding academic performance, American Society for Enology and Viticulture (May 2024).</div></li>
+        <li><span class="dates">2021</span><div class="detail"><strong>Best Presenter</strong>, 8th Undergraduate Practicum Assessment Symposium, RD-TEC Lamjung Campus, Nepal (Dec 2021).</div></li>
+        <li><span class="dates">2019</span><div class="detail"><strong>Best Position Paper</strong> — “Eliminating Food Hunger by 2030 through Global Alliance,” FAO Committee, Chitwan Model United Nations (Jan 2019).</div></li>
+        <li><span class="dates">2018</span><div class="detail"><strong>Penta-mind Competition Winner</strong> — agri-quiz on cognitive reasoning, Creative Thinkers Society, Lamjung, Nepal (Jul 2018).</div></li>
+        <li><span class="dates">2017–2021</span><div class="detail"><strong>Merit-Based Scholarship</strong>, Institute of Agriculture and Animal Science, Lamjung Campus, Nepal.</div></li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- =================  SERVICE  ================= -->
+  <section id="service">
+    <details class="collapsible">
+      <summary>
+        <h2>Service &amp; Leadership</h2>
+        <span class="toggle">5 roles · click to expand</span>
+      </summary>
+      <ul class="dated">
+        <li><span class="dates">Apr 2026</span><div class="detail"><strong>Reviewer,</strong> Student Travel Award Applications, American Phytopathological Society (APS).</div></li>
+        <li><span class="dates">Sep 2024 – present</span><div class="detail"><strong>Webmaster,</strong> Graduate Students Association, Dept. of Botany &amp; Plant Pathology, Oregon State University — updated the GSA website, planned and organized graduate-student events, and served on the Travel Grant Application Review committee.</div></li>
+        <li><span class="dates">2020 – 2021</span><div class="detail"><strong>President,</strong> Agriculture Student Liaison Forum, Lamjung, Nepal.</div></li>
+        <li><span class="dates">2018 – 2020</span><div class="detail"><strong>Research &amp; Planning Co-ordinator,</strong> IAAS Nepal, Lamjung Campus.</div></li>
+        <li><span class="dates">2018 – 2019</span><div class="detail"><strong>Friday Discussion Forum Co-ordinator,</strong> Youth for Agri Welfare, Nepal.</div></li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- =================  SKILLS  ================= -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul class="chips">
+      <li>R Studio</li><li>Python</li><li>Unix-Linux</li><li>MEGA</li><li>Geneious</li><li>ApE</li>
+      <li>Plant tissue culture</li><li>Electrocompetent cell preparation</li><li>Protein induction</li>
+      <li>CRISPR-Cas9 gene editing</li><li>Gateway &amp; Golden Gate cloning</li><li>Molecular cloning</li>
+      <li>PCR, sequencing &amp; electrophoresis</li><li>LAMP assays</li>
+    </ul>
+  </section>
+
+  <!-- =================  FOOTER  ================= -->
+  <footer>
+    Anupa Gaire · <a href="mailto:gair1381@vandals.uidaho.edu">gair1381@vandals.uidaho.edu</a> ·
+    <a href="https://orcid.org/0009-0006-9024-0359" target="_blank" rel="noopener">ORCID 0009-0006-9024-0359</a><br>
+    <p class="disclosure">This site was built with the help from Goose using version 1.54.0, through
+    the University of Idaho's MindRouter service, in October 2026. I used it to write the HTML and
+    CSS based on my description and CV. I checked it by reading every line on the published page.
+    I wrote the content about me and I am responsible for it.</p>
+  </footer>
+
+</div>
+</body>
+</html>
